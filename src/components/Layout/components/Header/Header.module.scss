@@ -18,8 +18,12 @@
     justify-content: space-between;
 }
 
-.search {
+.search,
+.search-result {
     width: 361px;
+}
+
+.search {
     height: var(--search-height);
     background-color: rgba(22, 24, 35, 0.06);
     padding: 0 0 0 16px;
