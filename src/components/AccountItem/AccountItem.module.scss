@@ -1,6 +1,12 @@
 .wrapper {
     display: flex;
     align-items: center;
+    padding: 9px 16px;
+    cursor: pointer; 
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
 }
 
 .avatar {
@@ -16,10 +22,11 @@
 }
 
 .name {
-    font-size: 1.4rem;
-    font-weight: 600;
+    font-size: 1.6rem;
+    font-weight: 500;
 }   
 
 .username {
-
+    font-size: 1.4rem;
+    color: rgba(22, 24, 35, 0.5);
 }

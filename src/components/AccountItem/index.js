@@ -15,7 +15,7 @@ function AccountItem() {
             />
             <div className={cx('info')}>
                 <p className={cx('name')}>Vo Ngoc Tran</p>
-                <span className={cx('username')}>ngoxngocjtraan</span>
+                <span className={cx('username')}>vox.ngoc.traan</span>
             </div>
         </div>
     );

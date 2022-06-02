@@ -3,24 +3,19 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faSpinner, faMagnifyingGlass, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import 'tippy.js/dist/tippy.css';
 import Tippy from '@tippyjs/react/headless';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import images from '~/assets/images';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
-
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([1, 2, 3, 4]);
-        }, 3000);
-    });
 
     return (
         <header className={cx('wrapper')}>
@@ -54,7 +49,15 @@ function Header() {
                         </button>
                     </div>
                 </Tippy>
-                <div className={cx('action')}></div>
+                <div className={cx('action')}>
+                    <Button text>Register</Button>
+                    <Button rounded primary>
+                        Login
+                    </Button>
+                    <button className={cx("more-button")}>
+                    <FontAwesomeIcon icon={faEllipsisVertical} />
+                    </button>
+                </div>
             </div>
         </header>
     );

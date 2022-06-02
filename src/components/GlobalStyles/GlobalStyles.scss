@@ -10,6 +10,7 @@
     // Colors
     --black: #000;
     --text-color: #333;
+    --white-color: #fff;
 }
 
 * {
@@ -35,6 +36,6 @@ button, input, [tabindex] {
 }
 
 a[href] {
-    color: var(--text-color);
+    display: inline-block;
     text-decoration: none;
 }

@@ -41,6 +41,7 @@
         border: none;
         outline: none;
         background-color: transparent;
+        padding-right: 30px;
     }
 
     input:not(:placeholder-shown) ~ .search-btn {
@@ -82,6 +83,13 @@
     }
 }
 
+.search-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 8px;
+    color: rgba(22, 24, 35, 0.5);
+}
+
 .clear,
 .loading {
     font-size: 1.6rem;
@@ -94,4 +102,10 @@
 
 .loading {
     display: none;
+}
+
+.more-button {
+    font-size: 2rem;
+    margin-left: 24px;
+    background: transparent;
 }
