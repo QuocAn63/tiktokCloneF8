@@ -7,7 +7,7 @@ import { faCircleXmark, faSpinner, faMagnifyingGlass, faEllipsisVertical } from 
 import 'tippy.js/dist/tippy.css';
 import Tippy from '@tippyjs/react/headless';
 
-import { Wrapper as PopperWrapper } from '~/components/Popper';
+import { Wrapper as PopperWrapper, MenuPopper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import images from '~/assets/images';
 import Button from '~/components/Button';
@@ -54,9 +54,11 @@ function Header() {
                     <Button rounded primary>
                         Login
                     </Button>
-                    <button className={cx("more-button")}>
-                    <FontAwesomeIcon icon={faEllipsisVertical} />
-                    </button>
+                    <MenuPopper >
+                        <button className={cx("more-button")}>
+                            <FontAwesomeIcon icon={faEllipsisVertical} />
+                        </button>
+                    </MenuPopper>
                 </div>
             </div>
         </header>

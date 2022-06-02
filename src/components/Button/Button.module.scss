@@ -74,6 +74,12 @@
     }
 }
 
+.icon {
+    display: inline-block;
+    text-align: center;
+    width: 22px;
+}
+
 .title + .icon,
 .icon + .title {
     margin-left: 8px;
