@@ -3,7 +3,15 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import {
+    faCircleXmark,
+    faSpinner,
+    faMagnifyingGlass,
+    faEllipsisVertical,
+    faEarthAsia,
+    faCircleQuestion,
+    faKeyboard,
+} from '@fortawesome/free-solid-svg-icons';
 import 'tippy.js/dist/tippy.css';
 import Tippy from '@tippyjs/react/headless';
 
@@ -14,8 +22,49 @@ import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
+const MENU_ITEMS = [
+    {
+        icon: <FontAwesomeIcon icon={faEarthAsia}></FontAwesomeIcon>,
+        title: 'English',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+            ],
+        },
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCircleQuestion}></FontAwesomeIcon>,
+        title: 'Feedback and help',
+        to: '/feedback',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faKeyboard}></FontAwesomeIcon>,
+        title: 'Keyboard shortcuts',
+    },
+];
+
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
+
+    const handleChange = (item) => {
+        switch (item.type) {
+            case 'language':
+                console.log(item);
+                break;
+
+            default:
+        }
+    };
 
     return (
         <header className={cx('wrapper')}>
@@ -54,8 +103,8 @@ function Header() {
                     <Button rounded primary>
                         Login
                     </Button>
-                    <MenuPopper >
-                        <button className={cx("more-button")}>
+                    <MenuPopper items={MENU_ITEMS} onChange={handleChange}>
+                        <button className={cx('more-button')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>
                     </MenuPopper>

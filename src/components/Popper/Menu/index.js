@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import classNames from 'classnames/bind';
 import styles from './Menu.module.scss';
@@ -7,38 +7,32 @@ import 'tippy.js/dist/tippy.css';
 import Tippy from '@tippyjs/react/headless';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleQuestion, faEarthAsia, faKeyboard } from '@fortawesome/free-solid-svg-icons'
 import MenuItem from './MenuItem';
 import Header from './Header';
 
 const cx = classNames.bind(styles);
 
-const MENU_ITEMS = [
-    { 
-        icon: <FontAwesomeIcon icon={faEarthAsia}></FontAwesomeIcon>,
-        title: "English"
-    },
-    { 
-        icon: <FontAwesomeIcon icon={faCircleQuestion}></FontAwesomeIcon>,
-        title: "Feedback and help",
-        to: "/feedback"
-    },
-    { 
-        icon: <FontAwesomeIcon icon={faKeyboard}></FontAwesomeIcon>,
-        title: "Keyboard shortcuts"
-    }
-]
-
-function Menu({ children }) {
+function Menu({ children, items = [], onChange = () => {} }) {
+    const [history, setHistory] = useState([{ data: items}])
+    const current = history[history.length - 1];
 
     const renderItems = () => {
-        return MENU_ITEMS.map((item, index) => {
+        return current.data.map((item, index) => {
+            const isParent = !!item.children
+            
             return (
-                <MenuItem data={item} key={index} />
+                <MenuItem data={item} key={index} onClick={() => {
+                    if(isParent) {
+                        setHistory(prev => [...prev, item.children])
+                    } else {
+                        onChange(item)
+                    }
+                }}/>
             )
         })
     }
+
+    
 
     return (
         <Tippy
@@ -49,7 +43,7 @@ function Menu({ children }) {
             render={(attrs) => (
                 <div className={cx('action-menu')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx("action-menu-wrapper")}>
-                        <Header title="Language" />
+                        {history.length > 1 && <Header title="Language" onBack={() => setHistory(prev => prev.slice(0, prev.length - 1))} />}
                         {renderItems()}
                     </PopperWrapper>
                 </div>
