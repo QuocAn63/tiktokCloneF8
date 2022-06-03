@@ -10,6 +10,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleQuestion, faEarthAsia, faKeyboard } from '@fortawesome/free-solid-svg-icons'
 import MenuItem from './MenuItem';
+import Header from './Header';
 
 const cx = classNames.bind(styles);
 
@@ -41,12 +42,14 @@ function Menu({ children }) {
 
     return (
         <Tippy
+            visible
             delay={[0, 750]}
             placement='bottom-end'
             interactive
             render={(attrs) => (
                 <div className={cx('action-menu')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx("action-menu-wrapper")}>
+                        <Header title="Language" />
                         {renderItems()}
                     </PopperWrapper>
                 </div>
