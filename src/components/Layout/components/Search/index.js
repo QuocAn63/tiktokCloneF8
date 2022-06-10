@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useDebouce } from '~/hooks'
 
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
@@ -20,15 +21,17 @@ function Search() {
 
     const searchInputRef = useRef();
 
+    const debouced = useDebouce(searchValue, 500)
+
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!debouced.trim()) {
             setSearchResult([]);
             return;
         }
 
         setLoading(true);
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debouced)}&type=less`)
             .then((response) => response.json())
             .then((response) => {
                 setSearchResult(response.data);
@@ -37,7 +40,7 @@ function Search() {
             .catch(() => {
                 setLoading(false);
             });
-    }, [searchValue]);
+    }, [debouced]);
 
     const handleClear = () => {
         setSearchValue('');
