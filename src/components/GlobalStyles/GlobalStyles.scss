@@ -1,5 +1,4 @@
 @import 'normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
 
 :root {
     --primary-color: #fe2c55;
@@ -25,7 +24,7 @@ html {
 }
 
 body {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'ProximaNova', sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
@@ -37,7 +36,6 @@ button, input, [tabindex] {
 }
 
 a[href] {
-    display: inline-block;
     text-decoration: none;
 }
 
@@ -61,7 +59,7 @@ a[href] {
 }
 
 @font-face {
-    font-family: ProximaNova;
+    font-family: SofiaPro;
     src: url('/assets/fonts/sofiapro-bold.woff2');
     font-weight: 400;
 }

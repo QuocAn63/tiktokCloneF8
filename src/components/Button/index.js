@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef } from 'react';
 
 import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
@@ -22,7 +22,7 @@ function Button({
     leftIcon,
     rightIcon,
     ...passProps
-}) {
+}, ref) {
     let Comp = 'button';
 
     const props = {
@@ -49,7 +49,7 @@ function Button({
     const classes = cx('wrapper', { [className]: className, disabled, primary, outline, small, large, text, rounded });
 
     return (
-        <Comp className={classes} {...props}>
+        <Comp ref={ref} className={classes} {...props}>
             {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
             <span className={cx('title')}>{children}</span>
             {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
@@ -57,4 +57,4 @@ function Button({
     );
 }
 
-export default Button;
+export default forwardRef(Button);
