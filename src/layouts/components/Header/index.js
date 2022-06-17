@@ -21,7 +21,7 @@ import Search from '../Search'
 import { MenuPopper } from '~/components/Popper';
 import images from '~/assets/images';
 import Button from '~/components/Button';
-import { MessageIcon } from '~/components/Icons/index.';
+import { MessageIcon } from '~/components/Icons/Icons';
 import Image from '~/components/Image'
 import config from '~/config'
 
