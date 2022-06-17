@@ -6,7 +6,7 @@ function useDebounce(value, delay) {
     useEffect(() => {
         const handler = setTimeout(() => setDebouncedVale(value), delay)
 
-        return () => clearTimeout(handler)
+        return () => clearTimeout(handler) // eslint-disable-next-line
     }, [value])
 
     return debouncedValue
