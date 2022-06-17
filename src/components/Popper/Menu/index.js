@@ -12,7 +12,7 @@ import Header from './Header';
 
 const cx = classNames.bind(styles);
 
-function Menu({ children, items = [], onChange = () => {} }) {
+function Menu({ children, items = [], hideOnClick = false, onChange = () => {} }) {
     const [history, setHistory] = useState([{ data: items}])
     const current = history[history.length - 1];
 
@@ -37,13 +37,16 @@ function Menu({ children, items = [], onChange = () => {} }) {
             delay={[0, 750]}
             offset={[16, 8]}
             placement='bottom-end'
+            hideOnClick={hideOnClick}
             interactive
             onHide={() => setHistory(prev => prev.slice(0, 1))}
             render={(attrs) => (
                 <div className={cx('action-menu')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx("action-menu-wrapper")}>
                         {history.length > 1 && <Header title="Language" onBack={() => setHistory(prev => prev.slice(0, prev.length - 1))} />}
+                        <div className={cx('menu-scrollable')}>
                         {renderItems()}
+                        </div>
                     </PopperWrapper>
                 </div>
             )}

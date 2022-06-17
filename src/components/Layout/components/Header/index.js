@@ -1,5 +1,4 @@
-import { useState } from 'react';
-
+import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,6 +23,7 @@ import images from '~/assets/images';
 import Button from '~/components/Button';
 import { MessageIcon } from '~/components/Icons/index.';
 import Image from '~/components/Image'
+import routesConfig from '~/config/routes'
 
 const cx = classNames.bind(styles);
 
@@ -43,7 +43,7 @@ const MENU_ITEMS = [
                     type: 'language',
                     code: 'vi',
                     title: 'Tiếng Việt',
-                },
+                }
             ],
         },
     },
@@ -94,9 +94,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <div className={cx('logo')}>
+                <Link to={routesConfig.home} className={cx('logo')}>
                     <img src={images.logo} alt="logo" />
-                </div>
+                </Link>
                 
         {/* Search here */}
 

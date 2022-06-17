@@ -25,6 +25,13 @@ function Search() {
 
     const debouced = useDebouce(searchValue, 500);
 
+    const handleChangeSearch = e => {
+        const searchValue = e.target.value
+        if(!searchValue.startsWith(' ')) {
+            setSearchValue(searchValue)
+        } 
+    }
+
     useEffect(() => {
         if (!debouced.trim()) {
             setSearchResult([]);
@@ -35,7 +42,6 @@ function Search() {
             setLoading(true);
 
             const result = await searchServices.search(debouced);
-            console.log(result)
             setSearchResult(result);
 
             setLoading(false);
@@ -58,6 +64,7 @@ function Search() {
         <HeadlessTippy
             visible={showResult && searchResult.length > 0}
             interactive
+            appendTo={() => document.body}
             onClickOutside={handleHideResult}
             render={(attrs) => (
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
@@ -77,7 +84,7 @@ function Search() {
                     ref={searchInputRef}
                     placeholder="Search accounts and videos"
                     spellCheck={false}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={(e) => handleChangeSearch(e)}
                     onFocus={() => setShowResult(true)}
                 />
                 {!loading && !!searchValue && (
@@ -86,7 +93,7 @@ function Search() {
                     </button>
                 )}
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={e => e.preventDefault()}>
                     <FontAwesomeIcon className={cx('')} icon={faMagnifyingGlass} />
                 </button>
             </div>

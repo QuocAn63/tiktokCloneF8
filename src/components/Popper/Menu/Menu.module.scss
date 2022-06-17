@@ -24,11 +24,15 @@
     }
 }
 
+.menu-scrollable {
+    overflow-y: auto;
+}
+
 .header {
     margin-top: -8px;
     position: relative;
     height: 50px;
-
+    flex-shrink: 0;
 }
 
 .back-btn {
